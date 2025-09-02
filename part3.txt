@@ -1,0 +1,136 @@
+-[spede] ~ 
+18:19:07 $ git config --global user.name "Simon Vu Truong"
+-[spede] ~ 
+18:22:51 $ git config --global user.name "simvutru"
+-[spede] ~ 
+18:23:01 $ git config --global user.email "simonvutru@gmail.com"
+-[spede] ~ 
+18:23:17 $ git config --list
+user.name=simvutru
+user.email=simonvutru@gmail.com
+-[spede] ~ 
+18:59:30 $ ssh-keygen -t ed25519 -C $(git config --get user.email)
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/spede/.ssh/id_ed25519): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/spede/.ssh/id_ed25519
+Your public key has been saved in /home/spede/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:J6EwA+PiwdTtjSoxhR/EoOzr/fWN63TeLzWdkk2CJDs simonvutru@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+| oO..            |
+|=o B .   . .     |
+|o++ * o . + .    |
+|o+.. * o E . . . |
+| oo . . S o   = o|
+| ...     o   o =.|
+| ..    . . .  o .|
+|. .   . o = ..   |
+| . ...  .=.o .o. |
++----[SHA256]-----+
+-[spede] ~ 
+19:01:13 $ cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIESEpwcDQ8+MVVZmb4Q88sKOsvspQCrFDqniBmQ/3zmS simonvutru@gmail.com
+-[spede] ~ 
+19:01:31 $ ssh -T git@github.com
+The authenticity of host 'github.com (140.82.116.4)' can't be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com,140.82.116.4' (ECDSA) to the list of known hosts.
+git@github.com: Permission denied (publickey).
+![spede] ~ 
+19:01:54 $ ssh -T git@github.com
+Hi simvutru! You've successfully authenticated, but GitHub does not provide shell access.
+![spede] ~ 
+19:07:54 $ git clone git@github.com:CSUS-CS-CPE159/phase0-simvutru
+Cloning into 'phase0-simvutru'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+Receiving objects: 100% (10/10), done.
+remote: Total 10 (delta 0), reused 8 (delta 0), pack-reused 0 (from 0)
+-[spede] ~ 
+-[spede] ~ 
+t9:20:52 $ git clone git@github.com:CSUS-CS-CPE159/phase0-simvutru.gi 
+fatal: destination path 'phase0-simvutru' already exists and is not an empty directory.
+![spede] ~ 
+19:20:55 $ rm phase0-simvutru/
+rm: cannot remove 'phase0-simvutru/': Is a directory
+![spede] ~ 
+19:21:05 $ rmd phase0-simvutru/
+
+Command 'rmd' not found, but there are 22 similar ones.
+
+![spede] ~ 
+19:21:12 $ rmdir phase0-simvutru/
+rmdir: failed to remove 'phase0-simvutru/': Directory not empty
+![spede] ~ 
+19:21:30 $ rm -rf phase0-simvutru/
+-[spede] ~ 
+19:22:07 $ git clone git@github.com:CSUS-CS-CPE159/phase0-simvutru.git
+Cloning into 'phase0-simvutru'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 10 (delta 0), reused 8 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (10/10), done.
+-[spede] ~ 
+19:22:12 $ cd phase0-simvutru/
+-[spede] ~/phase0-simvutru (main=)
+19:23:01 $ cd 01-hello-world/
+-[spede] ~/phase0-simvutru/01-hello-world (main=)
+19:23:04 $ make
+Done linking "build/MyOS.dli" (with GDB enabled) at 1m.
+-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+19:43:05 $ ls build/MyOS.dli
+build/MyOS.dli
+-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+19:43:18 $ spede-target
+Launching SPEDE target to run in the background
+-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+20:06:37 $ spede-target -q
+The SPEDE Target has quit. Exiting...
+-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+20:08:20 $ spede-target
+Launching SPEDE target to run in the background
+ma-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+20:56:51 $ make
+Done linking "build/MyOS.dli" (with GDB enabled) at 1m.
+-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+20:56:55 $ spede-run
+The SPEDE Target will be reset, are you sure? (y/n) y
+Resetting the SPEDE Target...
+Downloading image 'build/MyOS.dli' to SPEDE Target via /dev/pts/1...
+File type is 'ELF'
+Total blocks to download:  0x8a  (128 bytes each)
+
+Load Successful ; Code loaded at 0x0x101000 (1477 bytes/sec)
+Executing the image 'build/MyOS.dli' on the SPEDE Target
+-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+20:57:28 $ spede-run -d
+The SPEDE Target will be reset, are you sure? (y/n) y
+Resetting the SPEDE Target...
+Downloading image 'build/MyOS.dli' to SPEDE Target via /dev/pts/1...
+File type is 'ELF'
+Total blocks to download:  0x8a  (128 bytes each)
+
+Load Successful ; Code loaded at 0x0x101000 (1969 bytes/sec)
+Executing the image 'build/MyOS.dli' on the SPEDE Target with GDB Enabled
+Launching GDB...
+Reading symbols from build/MyOS.dli...
+Expanding full symbols from build/MyOS.dli...
+Remote debugging using /dev/pts/1
+0x0010255d in breakpoint ()
+Temporary breakpoint 1 at 0x101183: file src/hello.c, line 5.
+
+Temporary breakpoint 1, main () at src/hello.c:5
+5	    printf("Hello, world!\n");
+SPEDE GDB$ run
+Hello, world!
+Welcome to MyOS!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ quit
+-[spede] ~/phase0-simvutru/01-hello-world {main %=}
+21:30:13 $ spede-run -d

@@ -1,0 +1,353 @@
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:38:45 $ spede-target
+The socket file './spede.sock' exists but SPEDE doesn't appear to be running
+
+Delete the socket and continue execution? (y/n) y
+Launching SPEDE target to run in the background
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:38:55 $ make
+Done linking "build/MyOS.dli" (with GDB enabled) at 1m.
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:39:10 $ spede-run -d
+The SPEDE Target will be reset, are you sure? (y/n) y
+Resetting the SPEDE Target...
+Downloading image 'build/MyOS.dli' to SPEDE Target via /dev/pts/1...
+File type is 'ELF'
+Total blocks to download:  0x83  (128 bytes each)
+
+Load Successful ; Code loaded at 0x0x101000 (2104 bytes/sec)
+Executing the image 'build/MyOS.dli' on the SPEDE Target with GDB Enabled
+Launching GDB...
+Reading symbols from build/MyOS.dli...
+Expanding full symbols from build/MyOS.dli...
+Remote debugging using /dev/pts/1
+0x00102685 in breakpoint ()
+Temporary breakpoint 1 at 0x101208: file src/main.c, line 39.
+
+Temporary breakpoint 1, main () at src/main.c:39
+39	    char buf[128] = {0};
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+NULL pointer!
+The buffer size is 17 bytes
+NULL pointer!
+CPE/CSC 159 for Spring/Fall 1970 will be fun!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ break puts
+Breakpoint 2 at 0x10119d: file src/main.c, line 23.
+SPEDE GDB$ innfo
+Undefined command: "innfo".  Try "help".
+SPEDE GDB$ info
+List of info subcommands:
+
+info address -- Describe where symbol SYM is stored.
+info all-registers -- List of all registers and their contents, for selected stack frame.
+info args -- All argument variables of current stack frame or those matching REGEXPs.
+info auto-load -- Print current status of auto-loaded files.
+info auxv -- Display the inferior's auxiliary vector.
+info bookmarks -- Status of user-settable bookmarks.
+info breakpoints, info b -- Status of specified breakpoints (all user-settable breakpoints if no argument).
+info classes -- All Objective-C classes, or those matching REGEXP.
+info common -- Print out the values contained in a Fortran COMMON block.
+info connections -- Target connections in use.
+info copying -- Conditions for redistributing copies of GDB.
+info dcache -- Print information on the dcache performance.
+info display -- Expressions to display when program stops, with code numbers.
+info exceptions -- List all Ada exception names.
+info extensions -- All filename extensions associated with a source language.
+info files -- Names of targets and files being debugged.
+info float -- Print the status of the floating point unit.
+info frame, info f -- All about the selected stack frame.
+info frame-filter -- List all registered Python frame-filters.
+info functions -- All function names or those matching REGEXPs.
+info guile, info gu -- Prefix command for Guile info displays.
+info inferiors -- Print a list of inferiors being managed.
+info line -- Core addresses of the code for a source line.
+info locals -- All local variables of current stack frame or those matching REGEXPs.
+info macro -- Show the definition of MACRO, and it's source location.
+info macros -- Show the definitions of all macros at LINESPEC, or the current source location.
+info mem -- Memory region attributes.
+info module -- Print information about modules.
+info modules -- All module names, or those matching REGEXP.
+info os -- Show OS data ARG.
+info pretty-printer -- GDB command to list all registered pretty-printers.
+info probes -- Show available static probes.
+info proc -- Show additional information about a process.
+info program -- Execution status of the program.
+info record, info rec -- Info record options.
+info registers, info r -- List of integer registers and their contents, for selected stack frame.
+info scope -- List the variables local to a scope.
+info selectors -- All Objective-C selectors, or those matching REGEXP.
+info sharedlibrary, info dll -- Status of loaded shared object libraries.
+info signals, info handle -- What debugger does when program gets various signals.
+info skip -- Display the status of skips.
+info source -- Information about the current source file.
+info sources -- All source files in the program or those matching REGEXP.
+info stack, info s -- Backtrace of the stack, or innermost COUNT frames.
+info static-tracepoint-markers -- List target static tracepoints markers.
+info symbol -- Describe what symbol is at location ADDR.
+info target -- Names of targets and files being debugged.
+info tasks -- Provide information about all known Ada tasks.
+info terminal -- Print inferior's saved terminal status.
+info threads -- Display currently known threads.
+info tracepoints, info tp -- Status of specified tracepoints (all tracepoints if no argument).
+info tvariables -- Status of trace state variables and their values.
+info type-printers -- GDB command to list all registered type-printers.
+info types -- All type names, or those matching REGEXP.
+info unwinder -- GDB command to list unwinders.
+info variables -- All global and static variable names or those matching REGEXPs.
+info vector -- Print the status of the vector unit.
+info vtbl -- Show the virtual function table for a C++ object.
+info warranty -- Various kinds of warranty you do not have.
+info watchpoints -- Status of specified watchpoints (all watchpoints if no argument).
+info win -- List of all displayed windows.
+info xmethod -- GDB command to list registered xmethod matchers.
+
+Type "help info" followed by info subcommand name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Type "apropos -v word" for full documentation of commands related to "word".
+Command name abbreviations are allowed if unambiguous.
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x0010119d in puts at src/main.c:23
+SPEDE GDB$ spede-run -d
+Undefined command: "spede-run".  Try "help".
+SPEDE GDB$ q
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:41:53 $ spede-run -d
+The SPEDE Target will be reset, are you sure? (y/n) 
+Exiting...
+![spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:41:57 $ y
+y: command not found
+![spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:42:04 $ spede-run -d
+The SPEDE Target will be reset, are you sure? (y/n) y
+Resetting the SPEDE Target...
+Downloading image 'build/MyOS.dli' to SPEDE Target via /dev/pts/1...
+File type is 'ELF'
+Total blocks to download:  0x83  (128 bytes each)
+
+Load Successful ; Code loaded at 0x0x101000 (2404 bytes/sec)
+Executing the image 'build/MyOS.dli' on the SPEDE Target with GDB Enabled
+Launching GDB...
+Reading symbols from build/MyOS.dli...
+Expanding full symbols from build/MyOS.dli...
+Remote debugging using /dev/pts/1
+0x00102685 in breakpoint ()
+Temporary breakpoint 1 at 0x101208: file src/main.c, line 39.
+
+Temporary breakpoint 1, main () at src/main.c:39
+39	    char buf[128] = {0};
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+NULL pointer!
+The buffer size is 17 bytes
+NULL pointer!
+CPE/CSC 159 for Spring/Fall 1970 will be fun!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ c
+The program is not being run.
+SPEDE GDB$ break puts
+Breakpoint 2 at 0x10119d: file src/main.c, line 23.
+SPEDE GDB$ break info
+Function "info" not defined.
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x0010119d in puts at src/main.c:23
+SPEDE GDB$ run
+The program is not being run.
+SPEDE GDB$ c
+The program is not being run.
+SPEDE GDB$ q
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:44:14 $ spede-run -d
+The SPEDE Target will be reset, are you sure? (y/n) y
+Resetting the SPEDE Target...
+Downloading image 'build/MyOS.dli' to SPEDE Target via /dev/pts/1...
+File type is 'ELF'
+Total blocks to download:  0x83  (128 bytes each)
+
+Load Successful ; Code loaded at 0x0x101000 (1870 bytes/sec)
+Executing the image 'build/MyOS.dli' on the SPEDE Target with GDB Enabled
+Launching GDB...
+Reading symbols from build/MyOS.dli...
+Expanding full symbols from build/MyOS.dli...
+Remote debugging using /dev/pts/1
+0x00102685 in breakpoint ()
+Temporary breakpoint 1 at 0x101208: file src/main.c, line 39.
+
+Temporary breakpoint 1, main () at src/main.c:39
+39	    char buf[128] = {0};
+SPEDE GDB$ info break
+No breakpoints or watchpoints.
+SPEDE GDB$ break puts
+Breakpoint 2 at 0x10119d: file src/main.c, line 23.
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+
+Breakpoint 2, puts (str=0x10422f "Hello, World!\n") at src/main.c:23
+23	    if (str) {
+SPEDE GDB$ list
+18	/**
+19	 * Prints a string to the screen starting at 0, 0
+20	 * @param str pointer to the string to print
+21	 */
+22	void puts(char *str) {
+23	    if (str) {
+24	        printf("NULL pointer!\n");
+25	        return;
+26	    }
+27	
+SPEDE GDB$ print str
+$1 = 0x10422f "Hello, World!\n"
+SPEDE GDB$ step
+24	        printf("NULL pointer!\n");
+SPEDE GDB$ step
+NULL pointer!
+25	        return;
+SPEDE GDB$ c
+Continuing.
+The buffer size is 17 bytes
+
+Breakpoint 2, puts (str=0x10dfc "welcome to MyOS!\n") at src/main.c:23
+23	    if (str) {
+SPEDE GDB$ jump +3
+Continuing at 0x1011b5.
+CPE/CSC 159 for Spring/Fall 1970 will be fun!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ q
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:50:22 $ ls
+build  Makefile  spede.sock  src
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:50:24 $ ls src
+main.c
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:50:33 $ vim src/main.c
+-[spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:52:43 $ spede-target -d
+spede-target: option requires an argument -- 'd'
+
+Usage: spede-target [options]
+
+Options:
+  -d | --display     Specifies which type of display to support:
+                       vnc:     Creates a VNC server
+                       console: Outputs to the current terminal/console
+                       default: Opens a window in the current desktop session
+
+  -m | --monitor     Enables the QEMU monitor via standard input/output
+                       console: Opens the monitor on the current terminal/console
+                       socket:  Opens the monitor on a socket
+                       default: none
+
+  -s | --socket      Specifies the control socket location for other scripts
+                     or programs to communicate with the QEMU session
+                       default: ./spede.sock
+
+  -l | --logfile     Specifies the log file location
+                       default: /dev/null
+
+  -i | --image       Specifies the SPEDE Target image to execute (not .dli)
+
+  -q | --quit        Quits the SPEDE Target
+
+  -k | --kill        Kills all spede target processes that can be found and exits
+
+The SPEDE Target will run the background unless one of the following options
+are specified:
+  --monitor console
+  --display term
+
+If both '--monitor console' and '--display term' are configured, '--display'
+will be reset to default
+
+![spede] ~/phase0-simvutru/02-debugging {main *%=}
+23:53:02 $ spede-run -d
+The SPEDE Target will be reset, are you sure? (y/n) y
+Resetting the SPEDE Target...
+Downloading image 'build/MyOS.dli' to SPEDE Target via /dev/pts/1...
+File type is 'ELF'
+Total blocks to download:  0x83  (128 bytes each)
+
+Load Successful ; Code loaded at 0x0x101000 (2104 bytes/sec)
+Executing the image 'build/MyOS.dli' on the SPEDE Target with GDB Enabled
+Launching GDB...
+Reading symbols from build/MyOS.dli...
+Expanding full symbols from build/MyOS.dli...
+Remote debugging using /dev/pts/1
+0x00102685 in breakpoint ()
+Temporary breakpoint 1 at 0x101208: file src/main.c, line 39.
+
+Temporary breakpoint 1, main () at src/main.c:39
+warning: Source file is more recent than executable.
+39	    char buf[128] = {0};
+SPEDE GDB$ break strlen
+Breakpoint 2 at 0x101178: file src/main.c, line 10.
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+NULL pointer!
+
+Breakpoint 2, strlen (str=0x10dfc "welcome to MyOS!\n") at src/main.c:10
+10	    int len = 0;
+SPEDE GDB$ backtrace
+#0  strlen (str=0x10dfc "welcome to MyOS!\n") at src/main.c:10
+#1  0x00101297 in main () at src/main.c:50
+SPEDE GDB$ info args
+str = 0x10dfc "welcome to MyOS!\n"
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x00101178 in strlen at src/main.c:10
+	breakpoint already hit 1 time
+SPEDE GDB$ delete 2
+SPEDE GDB$ info break
+No breakpoints or watchpoints.
+SPEDE GDB$ b 51
+Breakpoint 3 at 0x1012ab: file src/main.c, line 51.
+SPEDE GDB$ b 533
+No line 533 in the current file.
+SPEDE GDB$ b 53
+Breakpoint 4 at 0x1012bd: file src/main.c, line 53.
+SPEDE GDB$ c
+Continuing.
+The buffer size is 17 bytes
+
+Breakpoint 3, main () at src/main.c:51
+51	    puts(buf);
+SPEDE GDB$ print buf
+$1 = "welcome to MyOS!\n", '\000' <repeats 110 times>
+SPEDE GDB$ set buf[0] = 'W'
+SPEDE GDB$ print buf
+$2 = "Welcome to MyOS!\n", '\000' <repeats 110 times>
+SPEDE GDB$ c
+Continuing.
+NULL pointer!
+
+Breakpoint 4, main () at src/main.c:53
+53	    printf("CPE/CSC 159 for Spring/Fall %d will be fun!\n", year);
+SPEDE GDB$ print year
+$3 = 0x7b2
+SPEDE GDB$ print /d year
+$4 = 1970
+SPEDE GDB$ set year=2025
+SPEDE GDB$ print /d year
+$5 = 8229
+SPEDE GDB$ set year=2025.
+SPEDE GDB$ print /d year
+$6 = 2025
+SPEDE GDB$ c
+Continuing.
+CPE/CSC 159 for Spring/Fall 2025 will be fun!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ Quit
+SPEDE GDB$ 
+
